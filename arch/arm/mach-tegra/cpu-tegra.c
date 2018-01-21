@@ -1045,8 +1045,10 @@ static int __init tegra_cpufreq_governor_init(void)
 				cpufreq_set_gov(start_scaling_gov, i))))
 			pr_info("Failed to set the governor to %s for cpu %u\n",
 				start_scaling_gov, i);
-		if (policy)
+		if (policy){
 			cpufreq_cpu_put(policy);
+			pr_info("CPU %u: set governor to %s\n", i, start_scaling_gov);
+		}
 	}
 	return 0;
 }
